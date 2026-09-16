@@ -25,14 +25,8 @@ func getPi(i int) string {
 	skips := 0
 
 	for range len {
-		ratio, err := flipProcess()
+		ratio := flipProcess()
 
-		if err != nil {
-			fmt.Println("Zero tails, skipped")
-			len++
-			skips++
-			continue
-		}
 		results = append(results, ratio)
 	}
 
@@ -45,7 +39,7 @@ func getPi(i int) string {
 	return fmt.Sprintf("Approximation of pi on %v iterations, %v skips: %v", len, skips, pi_approx)
 }
 
-func flipProcess() (float64, error) {
+func flipProcess() float64 {
 	var heads float64 = 0.0
 	var tails float64 = 0.0
 
@@ -57,7 +51,7 @@ func flipProcess() (float64, error) {
 		}
 	}
 
-	return heads / (tails + heads), nil
+	return heads / (tails + heads)
 }
 
 func flipCoin() bool {
