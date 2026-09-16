@@ -6,12 +6,12 @@ import (
 )
 
 func main() {
-	iterations := []int{100, 1000, 10000, 100000}
+	iterations := []int{100, 1000, 10000, 100000, 1000000}
 	var results []string
 
 	for _, i := range iterations {
 		results = append(results, getpi(i))
-		fmt.Printf("Finished %v iteration run\n", i)
+		fmt.Printf("Finished %v iteration run\n`", i)
 	}
 
 	for _, r := range results {
