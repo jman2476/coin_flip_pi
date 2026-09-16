@@ -10,7 +10,7 @@ func main() {
 	var results []string
 
 	for _, i := range iterations {
-		results = append(results, getpi(i))
+		results = append(results, getPi(i))
 		fmt.Printf("Finished %v iteration run\n`", i)
 	}
 
@@ -19,13 +19,13 @@ func main() {
 	}
 }
 
-func getpi(i int) string {
+func getPi(i int) string {
 	len := i
 	var results []float64
 	skips := 0
 
 	for range len {
-		ratio, err := flipprocess()
+		ratio, err := flipProcess()
 
 		if err != nil {
 			fmt.Println("Zero tails, skipped")
@@ -45,26 +45,21 @@ func getpi(i int) string {
 	return fmt.Sprintf("Approximation of pi on %v iterations, %v skips: %v", len, skips, pi_approx)
 }
 
-func flipprocess() (float64, error) {
+func flipProcess() (float64, error) {
 	var heads float64 = 0.0
 	var tails float64 = 0.0
 
 	for heads <= tails {
-		if flipcoin() {
+		if flipCoin() {
 			heads++
 		} else {
 			tails++
 		}
 	}
-	// fmt.Printf("Heads: %v, Tails: %v\n", heads, tails)
-
-	// if tails == 0 {
-	// 	return 1.0, errors.New("Tails is zero")
-	// }
 
 	return heads / (tails + heads), nil
 }
 
-func flipcoin() bool {
+func flipCoin() bool {
 	return rand.Float32() >= 0.5
 }
