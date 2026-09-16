@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 )
@@ -8,21 +9,30 @@ import (
 func main() {
 	len := 100
 	var results []float64
+	skips := 0
 
 	for range len {
-		results = append(results, flipprocess())
+		ratio, err := flipprocess()
+
+		if err != nil {
+			fmt.Println("Zero tails, skipped")
+			len++
+			skips++
+			continue
+		}
+		results = append(results, ratio)
 	}
 
 	var sum float64
 	for _, v := range results {
 		sum += v
 	}
-	pi_approx := sum / float64(len) * 16
+	pi_approx := sum / float64(len) * 4
 
-	fmt.Printf("Approximation of pi on %v iterations: %v", len, pi_approx)
+	fmt.Printf("Approximation of pi on %v iterations, %v skips: %v", len, skips, pi_approx)
 }
 
-func flipprocess() float64 {
+func flipprocess() (float64, error) {
 	var heads float64 = 0.0
 	var tails float64 = 0.0
 
@@ -33,8 +43,13 @@ func flipprocess() float64 {
 			tails++
 		}
 	}
+	fmt.Printf("Heads: %v, Tails: %v\n", heads, tails)
 
-	return heads / tails
+	if tails == 0 {
+		return 1.0, errors.New("Tails is zero")
+	}
+
+	return heads / tails, nil
 }
 
 func flipcoin() bool {
