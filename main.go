@@ -10,8 +10,9 @@ func main() {
 	var results []string
 
 	for _, i := range iterations {
-		results = append(results, getPi(i))
-		fmt.Printf("Finished %v iteration run\n`", i)
+		val := concurrentFlips(i)
+		results = append(results, val)
+		fmt.Printf("Finished %v iteration run\nResult: %v\n", i, val)
 	}
 
 	for _, r := range results {
