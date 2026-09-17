@@ -7,7 +7,7 @@ import (
 
 func TestMultiFlip(t *testing.T) {
 	for range 5 {
-		heads, total := multiFlip()
+		heads, total := multiFlipTest()
 		ratio := float64(heads) / float64(total)
 		fmt.Printf(
 			"Heads: %v, Total: %v, Ratio: %v\n",
@@ -19,3 +19,5 @@ func TestMultiFlip(t *testing.T) {
 		}
 	}
 }
+
+func Test

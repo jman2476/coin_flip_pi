@@ -65,7 +65,7 @@ func testFlipTimeSingle() {
 	)
 }
 
-func multiFlip() (heads int, i int) {
+func multiFlipTest() (heads int, i int) {
 	flips := rand.Uint64()
 	fmt.Printf("Multiflip val: %b\n", flips)
 	for i = 0; i < 64; i++ {
@@ -83,6 +83,24 @@ func multiFlip() (heads int, i int) {
 	return
 }
 
-func handleMultiFlip(total int) {
+func handleMultiFlip(total int) float64 {
+	heads := 0
+	tails := 0
 
+	for heads <= tails {
+		flips := rand.Uint64()
+		for i := 0; i < 64; i++ {
+			if (flips>>i)&1 == 1 {
+				heads++
+			} else {
+				tails++
+			}
+			if heads > tails {
+				break
+			}
+		}
+	}
+	fmt.Printf("Heads: %d, Tails: %d", heads, tails)
+
+	return float64(heads) / float64(heads+tails)
 }
