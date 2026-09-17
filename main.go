@@ -2,17 +2,28 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
+	"time"
 )
 
 func main() {
-	iterations := []int{100, 1000, 10000, 100000, 1000000}
+	iterations := []int{100, 1000, 10000, 20000, 30000, 40000, 50000}
 	var results []string
+	const timeLayout = "15:04:05.00000"
 
 	for _, i := range iterations {
+		timeStart := time.Now()
+		fmt.Printf(
+			"Starting %v iteration run @ %v\n",
+			i, timeStart.Format(timeLayout))
 		val := concurrentFlips(i)
 		results = append(results, val)
-		fmt.Printf("Finished %v iteration run\nResult: %v\n", i, val)
+		timeEnd := time.Now()
+		fmt.Printf(
+			"Finished %v iteration run @ %v\nResult: %v\n",
+			i, timeEnd.Format(timeLayout), val)
+		fmt.Printf(
+			"Duration: %v\n", timeEnd.Sub(timeStart),
+		)
 	}
 
 	for _, r := range results {
@@ -53,8 +64,4 @@ func flipProcess() float64 {
 	}
 
 	return heads / (tails + heads)
-}
-
-func flipCoin() bool {
-	return rand.Float32() >= 0.5
 }
