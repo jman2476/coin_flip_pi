@@ -10,6 +10,13 @@ func main() {
 	var results []string
 	const timeLayout = "15:04:05.00000"
 
+	for range 10 {
+		testRandTimeSingle()
+		fmt.Println()
+		testFlipTimeSingle()
+		fmt.Println()
+	}
+
 	for _, i := range iterations {
 		timeStart := time.Now()
 		fmt.Printf(
