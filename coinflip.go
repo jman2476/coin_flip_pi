@@ -64,3 +64,22 @@ func testFlipTimeSingle() {
 		uThreeTwoEnd.Sub(uThreeTwoStart),
 	)
 }
+
+func multiFlip() (heads int, i int) {
+	flips := rand.Uint64()
+	for i = 0; i < 64; i++ {
+		if (flips>>i)&1 == 1 {
+			heads++
+		}
+
+		if heads > i+1-heads {
+			return
+		}
+	}
+
+	return
+}
+
+func handleMultiFlip(total int) {
+
+}
