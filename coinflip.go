@@ -100,7 +100,21 @@ func handleMultiFlip() (int, int, float64) {
 			}
 		}
 	}
-	fmt.Printf("Heads: %d, Tails: %d", heads, tails)
+	// fmt.Printf("Heads: %d, Tails: %d\n", heads, tails)
 
 	return heads, tails, float64(heads) / float64(heads+tails)
+}
+
+func avgMultiFlip(total int) float64 {
+	sum := 0.0
+	for range total {
+		_, _, ratio := handleMultiFlip()
+		sum += ratio
+	}
+	return sum / float64(total)
+}
+
+func approxPiMultiFlip(total int) string {
+	average := avgMultiFlip(total)
+	return fmt.Sprintf("Approximation of pi on %v iterations: %v", total, average*4)
 }

@@ -6,23 +6,24 @@ import (
 )
 
 func main() {
-	iterations := []int{100, 1000, 10000, 20000, 30000, 40000, 50000}
+	// iterations := []int{100, 1000, 10000, 20000, 30000, 40000, 50000}
+	iterations := []int{1000000}
 	var results []string
 	const timeLayout = "15:04:05.00000"
 
-	for range 10 {
-		testRandTimeSingle()
-		fmt.Println()
-		testFlipTimeSingle()
-		fmt.Println()
-	}
+	// for range 10 {
+	// 	testRandTimeSingle()
+	// 	fmt.Println()
+	// 	testFlipTimeSingle()
+	// 	fmt.Println()
+	// }
 
 	for _, i := range iterations {
 		timeStart := time.Now()
 		fmt.Printf(
 			"Starting %v iteration run @ %v\n",
 			i, timeStart.Format(timeLayout))
-		val := concurrentFlips(i)
+		val := approxPiMultiFlip(i)
 		results = append(results, val)
 		timeEnd := time.Now()
 		fmt.Printf(
