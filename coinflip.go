@@ -83,7 +83,7 @@ func multiFlipTest() (heads int, i int) {
 	return
 }
 
-func handleMultiFlip(total int) float64 {
+func handleMultiFlip() (int, int, float64) {
 	heads := 0
 	tails := 0
 
@@ -102,5 +102,5 @@ func handleMultiFlip(total int) float64 {
 	}
 	fmt.Printf("Heads: %d, Tails: %d", heads, tails)
 
-	return float64(heads) / float64(heads+tails)
+	return heads, tails, float64(heads) / float64(heads+tails)
 }
