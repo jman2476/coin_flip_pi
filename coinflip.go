@@ -100,7 +100,7 @@ func handleMultiFlip() (int, int, float64) {
 			}
 		}
 
-		if heads+tails >= 1000000000000 {
+		if heads+tails >= 1000000000 {
 			return heads, tails, 0.5
 		}
 	}
