@@ -99,6 +99,10 @@ func handleMultiFlip() (int, int, float64) {
 				break
 			}
 		}
+
+		if heads+tails >= 1000000000 {
+			return heads, tails, 0.5
+		}
 	}
 	// fmt.Printf("Heads: %d, Tails: %d\n", heads, tails)
 
@@ -107,7 +111,8 @@ func handleMultiFlip() (int, int, float64) {
 
 func avgMultiFlip(total int) float64 {
 	sum := 0.0
-	for range total {
+	for i := range total {
+		fmt.Println(i)
 		_, _, ratio := handleMultiFlip()
 		sum += ratio
 	}
