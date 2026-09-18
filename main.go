@@ -23,7 +23,8 @@ func main() {
 		fmt.Printf(
 			"Starting %v iteration run @ %v\n",
 			i, timeStart.Format(timeLayout))
-		val := approxPiMultiFlip(i)
+		// val := approxPiMultiFlip(i)
+		val := concurrentBitFlips(i)
 		results = append(results, val)
 		timeEnd := time.Now()
 		fmt.Printf(
